@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Http\Request;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -22,7 +24,7 @@ Route::get('approval', 'HomeController@approval')->name('approval');
 
 
 // -------------- Suppliant ~ Simple User --------------
-Route::group(['middleware' => ['auth', 'approved', 'roles'], 'roles' => ['admin', 'simple user']], function (){
+Route::group(['middleware' => ['auth', 'approved', 'roles'], 'roles' => ['admin', 'simple user']], function () {
     Route::get('/suppliant', 'SuppliantController@index')->name('suppliant');
 
     Route::get('suppliant/orders', 'SuppliantController@orders')->name('suppliant.orders');
@@ -47,7 +49,7 @@ Route::group(['middleware' => ['auth', 'approved', 'roles'], 'roles' => ['admin'
 
 // -------------- Stock Manager --------------
 
-Route::group(['middleware' => ['auth', 'approved', 'roles'], 'roles' => ['admin', 'Stock Manager']], function (){
+Route::group(['middleware' => ['auth', 'approved', 'roles'], 'roles' => ['admin', 'Stock Manager']], function () {
     Route::get('/stock', 'StockController@index')->name('stock');
 
     Route::get('stock/products', 'StockController@products')->name('stock.products');
@@ -72,13 +74,11 @@ Route::group(['middleware' => ['auth', 'approved', 'roles'], 'roles' => ['admin'
     Route::get('stock/orders/order/{orderItem}/request', 'StockController@requestForBuying')->name('stock.order.request');
 
 
-
 //    Route::get('/stock/order/{order}', 'StockController@showOrder')->name('showOrder');
 //
 //    Route::post('stock/order/{order}', 'StockController@confirm')->name('stock.confirm');
 //
 //    Route::get('stock/order/{order}/request', 'StockController@requestForBuying')->name('stock.requestForBuying');
-
 
 
     Route::get('products/{category}', 'StockController@product')->name('categories-product');
@@ -95,10 +95,7 @@ Route::group(['middleware' => ['auth', 'approved', 'roles'], 'roles' => ['admin'
     Route::get('deputy/buyingList/cancel/{buyingList}', 'DeputyController@buyingListCancel')->name('deputy.buyingList.cancel');
 
 
-
 });
-
-
 
 
 // -------------- Logistic --------------
@@ -113,12 +110,8 @@ Route::group(['middleware' => ['auth', 'approved', 'roles'], 'roles' => ['admin'
 });
 
 
-
-
-
-
 // -------------- Admin --------------
-Route::group(['middleware' => ['auth', 'approved', 'roles'], 'roles' => ['admin']], function (){
+Route::group(['middleware' => ['auth', 'approved', 'roles'], 'roles' => ['admin']], function () {
     Route::get('admin/users', 'AdminController@users');
 
     Route::get('admin/users/{user}', 'AdminController@userDetail')->name('userDetail');
@@ -127,16 +120,12 @@ Route::group(['middleware' => ['auth', 'approved', 'roles'], 'roles' => ['admin'
 });
 
 
-
 // -------------- All Users Profile --------------
 Route::get('/profile', 'FileUploadController@index')->middleware('auth');
 Route::post('/profile', 'FileUploadController@add')->name('image.upload')->middleware('auth');
 Route::get('profile/delete-photo', 'FileUploadController@delete')->name('delete_photo')->middleware('auth');
 
 
-//
-//Route::get('test', function (){
-//    $order =  \App\Order::first();
-//     $order->closeOrder();
-//    return $order;
+//Route::get('test', function (Request $request) {
+//    dd(auth()->validate($request->token));
 //});
