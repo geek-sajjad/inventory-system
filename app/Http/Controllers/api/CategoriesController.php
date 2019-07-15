@@ -22,14 +22,14 @@ class CategoriesController extends Controller
 
     public function index(Request $request)
     {
-        $jwt = new JWTAuth();
-        dd($jwt->parseToken()->authenticate());
-        if (! $user = JWTAuth::parseToken()->authenticate()) {
-            return response()->json(['user_not_found'], 404);
-        }
-        if (!auth()->check()) {
-            return response('login required', 421);
-        }
+//        $jwt = new JWTAuth();
+//        dd($jwt->parseToken()->authenticate());
+//        if (! $user = JWTAuth::parseToken()->authenticate()) {
+//            return response()->json(['user_not_found'], 404);
+//        }
+//        if (!auth()->check()) {
+//            return response('login required', 421);
+//        }
 //        return $this->user;
 //        $credentials = $request->only('token');
 //
