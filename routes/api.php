@@ -49,3 +49,7 @@ Route::group([
 
 
 Route::get('/categories', 'api\CategoriesController@index');
+Route::get('/orders', 'api\OrdersController@index');
+Route::post('/orders/create', 'api\OrdersController@create');
+
+Route::get('/profile', 'api\UserProfileImage@getImage');
