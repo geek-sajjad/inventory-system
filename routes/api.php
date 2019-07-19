@@ -53,3 +53,4 @@ Route::get('/orders', 'api\OrdersController@index');
 Route::post('/orders/create', 'api\OrdersController@create');
 
 Route::get('/profile', 'api\UserProfileImage@getImage');
+Route::post('/profile/upload', 'api\UserProfileImage@uploadImage');
