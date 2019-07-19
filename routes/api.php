@@ -41,6 +41,7 @@ Route::group([
 ], function () {
 
     Route::post('login', 'api\AuthController@login');
+    Route::post('register', 'api\AuthController@register');
     Route::post('logout', 'api\AuthController@logout');
 //    Route::post('refresh', 'AuthController@refresh');
     Route::post('me', 'api\AuthController@me');
