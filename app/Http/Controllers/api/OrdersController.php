@@ -25,6 +25,32 @@ class OrdersController extends Controller
 
     public function create(Request $request){
 //        return $request->all();
+
+
+        $order = auth()->user()->orders()->create([]);
+        $order->orderItems()->createMany($request->all());
+
+
+
+//        $order->orderItems()->createMany([
+//            [
+//                'product_id'=>14,
+//                'qty'=>14
+//            ],
+//            [
+//                'product_id'=>3,
+//                'qty'=>144
+//            ]
+//        ]);
+
+        return new OrderResource($order);
+
+
+
+
+
+
+//        return $request->all();
 //        return  ($request->all());
 
 
